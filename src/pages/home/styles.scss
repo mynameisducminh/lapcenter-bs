@@ -1,0 +1,20 @@
+.homecontainer {
+    width: 100%;
+
+    .content {
+        display: flex;
+    }
+
+    .menu_left {
+        width: 20%;
+        background-color: aqua;
+
+        .inp {
+            border-radius: 10px;
+        }
+    }
+
+    .list_products {
+        width: 80%;
+    }
+}
