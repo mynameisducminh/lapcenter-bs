@@ -29,6 +29,26 @@ export default function Home() {
     );
   };
 
+  const handleSelectChange = (e) => {
+    setBrand(e.target.value);
+    setlist(
+      data.filter((item) =>
+        item?.brand?.toLowerCase()?.includes(e.target.value.toLowerCase())
+      )
+    );
+    console.log(e.target.value);
+  };
+
+  const sortPrice = (e) => {
+    const val = e.target.value;
+    setPrice(val);
+    if (val === "1") {
+      setlist(data.sort((a, b) => a.price - b.price));
+    } else {
+      setlist(data.sort((a, b) => b.price - a.price));
+    }
+  };
+
   return (
     <div className="homecontainer">
       <Narbar />
@@ -54,8 +74,8 @@ export default function Home() {
             <p>Hãng</p>
             <select
               className="selectBox"
-              // value={brand}
-              // onChange={handleSelectChange}
+              value={brand}
+              onChange={handleSelectChange}
             >
               <option selected value=""></option>
               <option value="Asus">ASUS</option>
@@ -66,11 +86,7 @@ export default function Home() {
           </div>
           <div className="selectForm">
             <p>Giá</p>
-            <select
-              className="selectBox"
-              //  value={price}
-              //  onChange={sortPrice}
-            >
+            <select className="selectBox" value={price} onChange={sortPrice}>
               <option selected value=""></option>
               <option value="1">Từ thấp đến cao</option>
               <option value="2">Từ cao đến thấp</option>
