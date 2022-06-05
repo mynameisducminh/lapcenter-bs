@@ -1,15 +1,50 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Card from "../../components/card";
 import Narbar from "../../components/nabar";
 import { data } from "../../data";
 import { Form, Button } from "react-bootstrap";
 import "./styles.scss";
+import { SearchOutlined } from "@ant-design/icons";
+import axios from "axios";
 
 export default function Home() {
   const [list, setlist] = useState(data);
   const [search, setSearch] = useState("");
   const [brand, setBrand] = useState("");
   const [price, setPrice] = useState("");
+
+  useEffect(() => {
+    console.log("ham nay chay dau tien");
+    // fetchAPI();
+    fetchAxios();
+  }, []);
+
+  const fetchAPI = () => {
+    fetch("https://reqres.in/api/users/")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+  const fetchAxios = () => {
+    axios
+      .get("https://lap-center.herokuapp.com/api/product")
+      .then(function (response) {
+        // handle success
+        console.log("SUCCESS: ", response.data);
+        setlist(response.data.products)
+      })
+      .catch(function (error) {
+        // handle error
+        console.log('ERROR: ',error);
+      })
+      .then(function () {
+        // always executed
+      });
+  };
 
   const handleChange = (val) => {
     console.log("val: ", val);
@@ -54,7 +89,9 @@ export default function Home() {
       <Narbar />
       <div className="content">
         <div className="menu_left">
-          <Form.Label htmlFor="inputPassword5">Tim kiem san pham</Form.Label>
+          <Form.Label htmlFor="inputPassword5">
+            <b>Tim kiếm sản phẩm</b>
+          </Form.Label>
           <div className="d-flex justify-content-between">
             <Form.Control
               type="text"
@@ -66,12 +103,15 @@ export default function Home() {
               aria-describedby="passwordHelpBlock"
               className="inp"
             />
-            <Button variant="primary" onClick={onSubmitSearch}>
-              Tim Kiem
+            {/* <Button variant="primary " onClick={onSubmitSearch}>
+              Tìm Kiếm <SearchOutlined />
+            </Button>{" "} */}
+            <Button variant="primary " onClick={onSubmitSearch}>
+              Search <SearchOutlined />
             </Button>{" "}
           </div>
           <div className="selectForm d-flex">
-            <p>Hãng</p>
+            <b>Hãng</b>
             <select
               className="selectBox"
               value={brand}
@@ -85,7 +125,7 @@ export default function Home() {
             </select>
           </div>
           <div className="selectForm">
-            <p>Giá</p>
+            <b>Giá</b>
             <select className="selectBox" value={price} onChange={sortPrice}>
               <option selected value=""></option>
               <option value="1">Từ thấp đến cao</option>

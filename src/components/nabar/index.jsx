@@ -7,22 +7,22 @@ export default function Narbar() {
     <div className="d-flex justify-content-between navbar-container">
       <div className="logoicon">
         <div className="text-danger">
-          <h1>LAPCENTER</h1>
+          <h3>LAPCENTER</h3>
         </div>
       </div>
       <div className="mainmenu">
         <ul className="d-flex justify-content-between">
           <li>
-            <Link to="/">Trang Chu</Link>
+            <Link to="/">Trang Chủ</Link>
           </li>
           <li>
-            <Link to="/about">Gioi Thieu</Link>
+            <Link to="/about">Giới Thiệu</Link>
           </li>
           <li>
-            <Link to="/asd">Lien He</Link>
+            <Link to="/asd">Liên Hệ</Link>
           </li>
           <li>
-            <Link to="/login">Dang Nhap</Link>
+            <Link to="/login">Đăng Nhập</Link>
           </li>
         </ul>
       </div>

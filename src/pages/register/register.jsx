@@ -1,43 +1,37 @@
 import React, { useState } from "react";
 import { Form, Col, Row, Button } from "react-bootstrap";
 import Narbar from "../../components/nabar";
-import "./styles.scss";
+import "./register.scss";
 import { useNavigate } from "react-router-dom";
-const fakeAccount = { username: "admin", password: "admin" };
 
-export default function Login() {
+export default function Register() {
   const navigate = useNavigate();
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
+  const [confirmpassword, setConfirmpassword] = useState();
 
   const handleChane = (val, field) => {
     if (field === "username") {
       setUsername(val);
-      console.log("USERNAME: ", val);
-    } else {
+    }
+    if (field === "password") {
       setPassword(val);
-      console.log("PASSWORD: ", val);
+    } else {
+      setConfirmpassword(val);
+      console.log("CONFIRMPASWORD: ", val);
     }
   };
 
-  const handleLogin = () => {
-    if (
-      username === fakeAccount.username &&
-      password === fakeAccount.password
-    ) {
-      console.log("ĐĂNG NHẬP THÀNH CÔNG");
-      navigate("/");
-    } else {
-      console.log("ĐĂNG NHẬP KHÔNG THÀNH CÔNG");
-      alert("tên tài khoản hoặc mật khẩu không đúng vui lòng thử lại!!!");
-    }
+  const handleRegister = () => {
+    alert("Tạo tài khoản thành công");
+    navigate("/login");
   };
 
   return (
-    <div className="logincontainer">
+    <div className="register-container">
       <Narbar />
-      <div className="formlogin">
-        <h2>Đăng Nhập</h2>
+      <div className="form-register">
+        <h2>Đăng Ký</h2>
         <Form>
           <Form.Group
             as={Row}
@@ -51,7 +45,6 @@ export default function Login() {
               <Form.Control
                 type="text"
                 placeholder="Username"
-                value={username}
                 onChange={(e) => handleChane(e.target.value, "username")}
               />
             </Col>
@@ -68,18 +61,30 @@ export default function Login() {
               <Form.Control
                 type="password"
                 placeholder="Password"
-                value={password}
                 onChange={(e) => handleChane(e.target.value, "password")}
               />
             </Col>
           </Form.Group>
+          <Form.Group
+            as={Row}
+            className="mb-3 d-flex justify-content-between"
+            controlId="formPlaintextPassword"
+          >
+            <Form.Label column sm="2">
+              Confirm Password
+            </Form.Label>
+            <Col sm="9">
+              <Form.Control
+                type="Confirm Password"
+                placeholder="Confirm Password"
+                onChange={(e) => handleChane(e.target.value, "confirmpassword")}
+              />
+            </Col>
+          </Form.Group>
           <div className="d-flex justify-content-center mt-4">
-            <Button variant="success" onClick={handleLogin}>
-              Đăng Nhập
+            <Button variant="success" onClick={handleRegister}>
+              Đăng Ký
             </Button>{" "}
-          </div>
-          <div className="dk">
-            <a onClick={() => navigate("/register")}>Tạo tài khoản mới</a>
           </div>
         </Form>
       </div>
