@@ -16,7 +16,7 @@ export default function Home() {
   useEffect(() => {
     console.log("ham nay chay dau tien");
     // fetchAPI();
-    fetchAxios();
+    // fetchAxios();
   }, []);
 
   const fetchAPI = () => {
@@ -33,55 +33,110 @@ export default function Home() {
     axios
       .get("https://lap-center.herokuapp.com/api/product")
       .then(function (response) {
-        // handle success
         console.log("SUCCESS: ", response.data);
-        setlist(response.data.products)
+        setlist(response.data.products);
       })
       .catch(function (error) {
-        // handle error
-        console.log('ERROR: ',error);
+        console.log("ERROR: ", error);
       })
-      .then(function () {
-        // always executed
-      });
+      .then(function () {});
   };
 
   const handleChange = (val) => {
     console.log("val: ", val);
     setSearch(val);
-    setlist(
-      data.filter((item) =>
-        item?.name?.toLowerCase()?.includes(val.toLowerCase())
-      )
-    );
+    // setlist(
+    //   data.filter((item) =>
+    //     item?.name?.toLowerCase()?.includes(val.toLowerCase())
+    //   )
+    // );
   };
 
   const onSubmitSearch = () => {
-    setlist(
-      data.filter((item) =>
-        item?.name?.toLowerCase()?.includes(search.toLowerCase())
-      )
-    );
+    // axios
+    //   .get("https://lap-center.herokuapp.com/api/product", {
+    //     params: {
+    //       productName: search,
+    //       productBrand: brand,
+    //       orderByColumn: "price",
+    //       orderByDirection: price,
+    //     },
+    //   })
+
+    //   .then(function (response) {
+    //     console.log("SUCCESS: ", response.data);
+    //     setlist(response.data.products);
+    //   })
+    //   .catch(function (error) {
+    //     console.log("ERROR: ", error);
+    //   })
+    handleCallApi(search, brand, price);
   };
 
   const handleSelectChange = (e) => {
-    setBrand(e.target.value);
-    setlist(
-      data.filter((item) =>
-        item?.brand?.toLowerCase()?.includes(e.target.value.toLowerCase())
-      )
-    );
-    console.log(e.target.value);
+    const val = e.target.value;
+    setBrand(val);
+    // axios
+    //   .get(`https://lap-center.herokuapp.com/api/product`, {
+    //     params: {
+    //       productName: search,
+    //       productBrand: val,
+    //       orderByColumn: "price",
+    //       orderByDirection: price,
+    //     },
+    //   })
+    //   .then(function (response) {
+    //     console.log("SUCCESS: ", response.data);
+    //     setlist(response.data.products);
+    //   })
+    //   .catch(function (error) {
+    //     console.log("ERROR: ", error);
+    //   })
+    handleCallApi(search, val, price);
   };
 
   const sortPrice = (e) => {
     const val = e.target.value;
     setPrice(val);
-    if (val === "1") {
-      setlist(data.sort((a, b) => a.price - b.price));
-    } else {
-      setlist(data.sort((a, b) => b.price - a.price));
-    }
+    // axios
+    //   .get(
+    //     `https://lap-center.herokuapp.com/api/product`,
+    //     {
+    //       params: {
+    //         productName: search,
+    //         productBrand: brand,
+    //         orderByColumn: 'price',
+    //         orderByDirection: val
+    //       }
+    //     }
+    //   )
+    //   .then(function (response) {
+    //     console.log("SUCCESS: ", response.data);
+    //     setlist(response.data.products);
+    //   })
+    //   .catch(function (error) {
+    //     console.log("ERROR: ", error);
+    //   })
+    handleCallApi(search, brand, val);
+  };
+
+  const handleCallApi = (productName, productBrand, priceSort) => {
+    axios
+      .get(`https://lap-center.herokuapp.com/api/product`, {
+        params: {
+          productName: productName,
+          productBrand: productBrand,
+          orderByColumn: "price",
+          orderByDirection: priceSort,
+        },
+      })
+      .then(function (response) {
+        console.log("SUCCESS: ", response.data);
+        setlist(response.data.products);
+      })
+      .catch(function (error) {
+        console.log("ERROR: ", error);
+      });
   };
 
   return (
@@ -103,9 +158,6 @@ export default function Home() {
               aria-describedby="passwordHelpBlock"
               className="inp"
             />
-            {/* <Button variant="primary " onClick={onSubmitSearch}>
-              Tìm Kiếm <SearchOutlined />
-            </Button>{" "} */}
             <Button variant="primary " onClick={onSubmitSearch}>
               Search <SearchOutlined />
             </Button>{" "}
@@ -128,14 +180,14 @@ export default function Home() {
             <b>Giá</b>
             <select className="selectBox" value={price} onChange={sortPrice}>
               <option selected value=""></option>
-              <option value="1">Từ thấp đến cao</option>
-              <option value="2">Từ cao đến thấp</option>
+              <option value="asc">Từ thấp đến cao</option>
+              <option value="desc">Từ cao đến thấp</option>
             </select>
           </div>
         </div>
         <div className="d-flex flex-wrap justify-content-lg-around list_products">
           {list.map((item) => (
-            <Card product={item} />
+            <Card product={item} key={item.id} />
           ))}
         </div>
       </div>

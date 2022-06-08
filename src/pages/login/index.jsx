@@ -3,6 +3,7 @@ import { Form, Col, Row, Button } from "react-bootstrap";
 import Narbar from "../../components/nabar";
 import "./styles.scss";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 const fakeAccount = { username: "admin", password: "admin" };
 
 export default function Login() {
@@ -21,16 +22,30 @@ export default function Login() {
   };
 
   const handleLogin = () => {
-    if (
-      username === fakeAccount.username &&
-      password === fakeAccount.password
-    ) {
-      console.log("ĐĂNG NHẬP THÀNH CÔNG");
-      navigate("/");
-    } else {
-      console.log("ĐĂNG NHẬP KHÔNG THÀNH CÔNG");
-      alert("tên tài khoản hoặc mật khẩu không đúng vui lòng thử lại!!!");
-    }
+    const url = "https://lap-center.herokuapp.com/api/login";
+    // if (
+    //   username === fakeAccount.username &&
+    //   password === fakeAccount.password
+    // ) {
+    //   console.log("ĐĂNG NHẬP THÀNH CÔNG");
+    //   navigate("/");
+    // } else {
+    //   console.log("ĐĂNG NHẬP KHÔNG THÀNH CÔNG");
+    //   alert("tên tài khoản hoặc mật khẩu không đúng vui lòng thử lại!!!");
+    // }
+    axios
+      .post(url, {
+        username: username,
+        password: password,
+      })
+      .then(function (response) {
+        console.log("SUCCESS: " ,response.data);
+        navigate('/')
+      })
+      .catch(function (error) {
+        console.log("ERROR: ",error);
+        alert("tên tài khoản hoặc mật khẩu không đúng vui lòng thử lại!!!");
+      });
   };
 
   return (
