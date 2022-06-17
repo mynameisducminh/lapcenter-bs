@@ -1,14 +1,22 @@
 import React from "react";
 import "./styles.scss";
 import { Link } from "react-router-dom";
+import { LaptopOutlined } from "@ant-design/icons";
 
 export default function Narbar() {
   return (
     <div className="d-flex justify-content-between navbar-container">
       <div className="logoicon">
-        <div className="text-danger">
-          <h3>LAPCENTER</h3>
-        </div>
+        <ul className="text-danger">
+          <h3>
+            <li>
+              <Link to="/">
+                LAPCENTER
+                <LaptopOutlined />{" "}
+              </Link>
+            </li>
+          </h3>
+        </ul>
       </div>
       <div className="mainmenu">
         <ul className="d-flex justify-content-between">

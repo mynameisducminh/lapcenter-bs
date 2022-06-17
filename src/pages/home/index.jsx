@@ -159,7 +159,7 @@ export default function Home() {
               className="inp"
             />
             <Button variant="primary " onClick={onSubmitSearch}>
-              Search <SearchOutlined />
+            <SearchOutlined />
             </Button>{" "}
           </div>
           <div className="selectForm d-flex">
