@@ -23,27 +23,17 @@ export default function Login() {
 
   const handleLogin = () => {
     const url = "https://lap-center.herokuapp.com/api/login";
-    // if (
-    //   username === fakeAccount.username &&
-    //   password === fakeAccount.password
-    // ) {
-    //   console.log("ĐĂNG NHẬP THÀNH CÔNG");
-    //   navigate("/");
-    // } else {
-    //   console.log("ĐĂNG NHẬP KHÔNG THÀNH CÔNG");
-    //   alert("tên tài khoản hoặc mật khẩu không đúng vui lòng thử lại!!!");
-    // }
     axios
       .post(url, {
         username: username,
         password: password,
       })
       .then(function (response) {
-        console.log("SUCCESS: " ,response.data);
-        navigate('/')
+        console.log("SUCCESS: ", response.data);
+        navigate("/");
       })
       .catch(function (error) {
-        console.log("ERROR: ",error);
+        console.log("ERROR: ", error);
         alert("tên tài khoản hoặc mật khẩu không đúng vui lòng thử lại!!!");
       });
   };
@@ -94,7 +84,10 @@ export default function Login() {
             </Button>{" "}
           </div>
           <div className="dk">
-            <a onClick={() => navigate("/register")}>Tạo tài khoản mới</a>
+            <a onClick={() => navigate("/register")}>
+              {" "}
+              <i>Tạo tài khoản mới</i>
+            </a>
           </div>
         </Form>
       </div>

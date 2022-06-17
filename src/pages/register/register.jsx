@@ -3,30 +3,47 @@ import { Form, Col, Row, Button } from "react-bootstrap";
 import Narbar from "../../components/nabar";
 import "./register.scss";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function Register() {
   const navigate = useNavigate();
-  const [username, setUsername] = useState();
+  const [name, setName] = useState();
+  const [email, setEmail] = useState();
+  const [phone, setPhone] = useState();
   const [password, setPassword] = useState();
-  const [confirmpassword, setConfirmpassword] = useState();
 
   const handleChane = (val, field) => {
-    if (field === "username") {
-      setUsername(val);
+    if (field === "name") {
+      setName(val);
     }
     if (field === "password") {
       setPassword(val);
-    } else {
-      setConfirmpassword(val);
-      console.log("CONFIRMPASWORD: ", val);
+    }
+    if (field === "email") {
+      setEmail(val);
+    }
+    if (field === "phone") {
+      setPhone(val);
     }
   };
-
   const handleRegister = () => {
-    alert("Tạo tài khoản thành công");
-    navigate("/login");
+    const url = "https://lap-center.herokuapp.com/api/register";
+    axios
+      .post(url, {
+        name: name,
+        email: email,
+        phone: phone,
+        password: password,
+      })
+      .then(function (response) {
+        console.log("SUCCESS: ", response.data);
+        navigate("/login");
+      })
+      .catch(function (error) {
+        console.log("ERROR: ", error);
+        alert("Lỗi đăng lý xin vui lòng thử lại!!!");
+      });
   };
-
   return (
     <div className="register-container">
       <Narbar />
@@ -38,14 +55,14 @@ export default function Register() {
             className="mb-3 d-flex justify-content-between"
             controlId="formPlaintextEmail"
           >
-            <Form.Label column sm="2">
-              Username
+            <Form.Label column sm="3">
+              Customer's name
             </Form.Label>
             <Col sm="9">
               <Form.Control
                 type="text"
-                placeholder="Username"
-                onChange={(e) => handleChane(e.target.value, "username")}
+                placeholder="Name"
+                onChange={(e) => handleChane(e.target.value, "name")}
               />
             </Col>
           </Form.Group>
@@ -54,30 +71,46 @@ export default function Register() {
             className="mb-3 d-flex justify-content-between"
             controlId="formPlaintextPassword"
           >
-            <Form.Label column sm="2">
+            <Form.Label column sm="3">
+              Email
+            </Form.Label>
+            <Col sm="9">
+              <Form.Control
+                type="text"
+                placeholder="Email"
+                onChange={(e) => handleChane(e.target.value, "email")}
+              />
+            </Col>
+          </Form.Group>
+          <Form.Group
+            as={Row}
+            className="mb-3 d-flex justify-content-between"
+            controlId="formPlaintextPassword"
+          >
+            <Form.Label column sm="3">
+              Phone
+            </Form.Label>
+            <Col sm="9">
+              <Form.Control
+                type="text"
+                placeholder="Phone"
+                onChange={(e) => handleChane(e.target.value, "phone")}
+              />
+            </Col>
+          </Form.Group>
+          <Form.Group
+            as={Row}
+            className="mb-3 d-flex justify-content-between"
+            controlId="formPlaintextEmail"
+          >
+            <Form.Label column sm="3">
               Password
             </Form.Label>
             <Col sm="9">
               <Form.Control
-                type="password"
+                type="Password"
                 placeholder="Password"
                 onChange={(e) => handleChane(e.target.value, "password")}
-              />
-            </Col>
-          </Form.Group>
-          <Form.Group
-            as={Row}
-            className="mb-3 d-flex justify-content-between"
-            controlId="formPlaintextPassword"
-          >
-            <Form.Label column sm="2">
-              Confirm Password
-            </Form.Label>
-            <Col sm="9">
-              <Form.Control
-                type="Confirm Password"
-                placeholder="Confirm Password"
-                onChange={(e) => handleChane(e.target.value, "confirmpassword")}
               />
             </Col>
           </Form.Group>
