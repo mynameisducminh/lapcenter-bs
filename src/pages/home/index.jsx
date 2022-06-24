@@ -6,6 +6,7 @@ import { Form, Button } from "react-bootstrap";
 import "./styles.scss";
 import { SearchOutlined } from "@ant-design/icons";
 import axios from "axios";
+import Footer from "../../components/footer";
 
 export default function Home() {
   const [list, setlist] = useState(data);
@@ -191,6 +192,7 @@ export default function Home() {
           ))}
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }

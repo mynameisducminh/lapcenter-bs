@@ -6,6 +6,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import Login from "./pages/login";
 import Register from "./pages/register/register";
+import ProductDetail from "./pages/productDetail/productDetail";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -16,6 +17,7 @@ root.render(
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/product/:productId" element={<ProductDetail />} />
       </Routes>
     </BrowserRouter>{" "}
   </React.StrictMode>
