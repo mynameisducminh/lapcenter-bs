@@ -9,7 +9,7 @@ export default function Card({ product }) {
   // const url = product && product?.images[0]
   return (
     <div className="card-product pb-3 pt-2 my-4 mx-2">
-      {/* <img className="image" src={product.images[0]} alt="" /> */}
+      <img className="image" src={product.images[0]} alt="" />
       <div className="info-product mx-3 ">
         <h5>{product.name}</h5>
         <p>Hãng: {product.brand}</p>

@@ -9,15 +9,15 @@ import axios from "axios";
 import Footer from "../../components/footer";
 
 export default function Home() {
-  const [list, setlist] = useState(data);
+  const [list, setlist] = useState([]);
   const [search, setSearch] = useState("");
   const [brand, setBrand] = useState("");
   const [price, setPrice] = useState("");
 
   useEffect(() => {
-    console.log("ham nay chay dau tien");
+    // console.log("ham nay chay dau tien");
     // fetchAPI();
-    // fetchAxios();
+    fetchAxios();
   }, []);
 
   const fetchAPI = () => {
@@ -32,7 +32,7 @@ export default function Home() {
   };
   const fetchAxios = () => {
     axios
-      .get("https://lap-center.herokuapp.com/api/product")
+      .get("https://lap-center-v1.herokuapp.com/api/product")
       .then(function (response) {
         console.log("SUCCESS: ", response.data);
         setlist(response.data.products);
@@ -55,7 +55,7 @@ export default function Home() {
 
   const onSubmitSearch = () => {
     // axios
-    //   .get("https://lap-center.herokuapp.com/api/product", {
+    //   .get("https://lap-center-v1.herokuapp.com/api/product", {
     //     params: {
     //       productName: search,
     //       productBrand: brand,
@@ -78,7 +78,7 @@ export default function Home() {
     const val = e.target.value;
     setBrand(val);
     // axios
-    //   .get(`https://lap-center.herokuapp.com/api/product`, {
+    //   .get(`https://lap-center-v1.herokuapp.com/api/product`, {
     //     params: {
     //       productName: search,
     //       productBrand: val,
@@ -101,7 +101,7 @@ export default function Home() {
     setPrice(val);
     // axios
     //   .get(
-    //     `https://lap-center.herokuapp.com/api/product`,
+    //     `https://lap-center-v1.herokuapp.com/api/product`,
     //     {
     //       params: {
     //         productName: search,
@@ -123,7 +123,7 @@ export default function Home() {
 
   const handleCallApi = (productName, productBrand, priceSort) => {
     axios
-      .get(`https://lap-center.herokuapp.com/api/product`, {
+      .get(`https://lap-center-v1.herokuapp.com/api/product`, {
         params: {
           productName: productName,
           productBrand: productBrand,
