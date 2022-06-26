@@ -46,78 +46,23 @@ export default function Home() {
   const handleChange = (val) => {
     console.log("val: ", val);
     setSearch(val);
-    // setlist(
-    //   data.filter((item) =>
-    //     item?.name?.toLowerCase()?.includes(val.toLowerCase())
-    //   )
-    // );
   };
 
   const onSubmitSearch = () => {
-    // axios
-    //   .get("https://lap-center-v1.herokuapp.com/api/product", {
-    //     params: {
-    //       productName: search,
-    //       productBrand: brand,
-    //       orderByColumn: "price",
-    //       orderByDirection: price,
-    //     },
-    //   })
-
-    //   .then(function (response) {
-    //     console.log("SUCCESS: ", response.data);
-    //     setlist(response.data.products);
-    //   })
-    //   .catch(function (error) {
-    //     console.log("ERROR: ", error);
-    //   })
     handleCallApi(search, brand, price);
   };
 
   const handleSelectChange = (e) => {
     const val = e.target.value;
     setBrand(val);
-    // axios
-    //   .get(`https://lap-center-v1.herokuapp.com/api/product`, {
-    //     params: {
-    //       productName: search,
-    //       productBrand: val,
-    //       orderByColumn: "price",
-    //       orderByDirection: price,
-    //     },
-    //   })
-    //   .then(function (response) {
-    //     console.log("SUCCESS: ", response.data);
-    //     setlist(response.data.products);
-    //   })
-    //   .catch(function (error) {
-    //     console.log("ERROR: ", error);
-    //   })
+
     handleCallApi(search, val, price);
   };
 
   const sortPrice = (e) => {
     const val = e.target.value;
     setPrice(val);
-    // axios
-    //   .get(
-    //     `https://lap-center-v1.herokuapp.com/api/product`,
-    //     {
-    //       params: {
-    //         productName: search,
-    //         productBrand: brand,
-    //         orderByColumn: 'price',
-    //         orderByDirection: val
-    //       }
-    //     }
-    //   )
-    //   .then(function (response) {
-    //     console.log("SUCCESS: ", response.data);
-    //     setlist(response.data.products);
-    //   })
-    //   .catch(function (error) {
-    //     console.log("ERROR: ", error);
-    //   })
+
     handleCallApi(search, brand, val);
   };
 
@@ -160,7 +105,7 @@ export default function Home() {
               className="inp"
             />
             <Button variant="primary " onClick={onSubmitSearch}>
-            <SearchOutlined />
+              <SearchOutlined />
             </Button>{" "}
           </div>
           <div className="selectForm d-flex">
@@ -192,7 +137,7 @@ export default function Home() {
           ))}
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 }
