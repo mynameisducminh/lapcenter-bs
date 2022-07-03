@@ -31,6 +31,8 @@ const responsive = {
 export default function ProductDetail() {
   const { state } = useLocation();
   const [product, setProduct] = useState();
+  const [productsBrand, setProductsBrand] = useState();
+  const [image, setImage] = useState("");
   console.log("product id: ", state.id);
 
   //callAPI
@@ -40,16 +42,36 @@ export default function ProductDetail() {
         `https://lap-center-v1.herokuapp.com/api/product/getProductById/${state.id}`
       )
       .then(function (response) {
-        console.log("SUCCESS: ", response.data.response);
-        setProduct(response.data.response);
+        const data = response.data.response;
+        console.log("SUCCESS: ", data);
+        setProduct(data);
+        setImage(data.images[0]);
       })
       .catch(function (error) {
         console.log("ERROR: ", error);
       })
       .then(function () {});
   };
+
+  const getProductBrand = () => {
+    axios
+      .get(`https://lap-center-v1.herokuapp.com/api/product`, {
+        params: {
+          productBrand: state.brand,
+        },
+      })
+      .then(function (response) {
+        console.log("SUCCESS 1: ", response.data);
+        setProductsBrand(response.data.products);
+      })
+      .catch(function (error) {
+        console.log("ERROR 1: ", error);
+      });
+  };
+
   useEffect(() => {
     getProductId();
+    getProductBrand();
   }, []);
 
   return (
@@ -64,30 +86,31 @@ export default function ProductDetail() {
         <hr />
         <div className="info row">
           <div className="productImage col">
-            <img
-              src="https://philong.com.vn/media/product/24366-5.jpg"
-              alt=""
-              className="image"
-            />
+            <img src={image} alt="" className="image" />
             <div className="text-center">
-              <img
-                src="https://philong.com.vn/media/product/24366-5.jpg"
-                alt=""
-                className="imgSmail"
-              />
+              {product?.images.length > 0 &&
+                product?.images.map((item, index) => (
+                  <img
+                    src={item}
+                    alt=""
+                    className="imgSmail"
+                    key={index}
+                    onClick={() => setImage(item)}
+                  />
+                ))}
             </div>
           </div>
           <div className="price col">
             <span>Giá bán</span>{" "}
             <span className="amount">{product?.price} VND</span>
-            <div className="gift">Khuyen mai: Qua tang</div>
-            <div className="gitInfo">Thong tin qua tang</div>
+            <div className="gift">Khuyến mãi: Quà tặng</div>
+            <div className="gitInfo">Thông tin quà tặng</div>
             <div className="text-center">
               <Button className="my-4 bg-danger">Mua Ngay</Button>
               <br />
               <span>
-                Goi ngay <span className="text-danger h4">12312882</span> de giu
-                hang
+                Gọi ngay <span className="text-danger h4">036 879 6524</span> để giữ
+                hàng
               </span>
             </div>
           </div>
@@ -141,15 +164,14 @@ export default function ProductDetail() {
             </tr>
           </tbody>
         </table>
-        <p className="text-danger h5">San Pham Cung Thuong Hieu</p>
+        <p className="text-danger h5">Sản phẩm cùng thương hiệu </p>
         <hr />
       </div>
       <Carousel responsive={responsive}>
-        <SameCard product={product}/>
-        <div>Item 1</div>
-        <div>Item 2</div>
-        <div>Item 3</div>
-        <div>Item 4</div>
+        {productsBrand?.length > 0 &&
+          productsBrand?.map((item, index) => (
+            <SameCard product={item} key={index} />
+          ))}
       </Carousel>
       ;
       <Footer />
