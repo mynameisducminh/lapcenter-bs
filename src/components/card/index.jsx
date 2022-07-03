@@ -22,7 +22,9 @@ export default function Card({ product }) {
         <Button
           variant="primary"
           onClick={() => {
-            navigate(`/product/${product._id}`, { state: { id: product._id } });
+            navigate(`/product/${product._id}`, {
+              state: { id: product._id, brand: product.brand },
+            });
           }}
         >
           Xem sản phẩm
