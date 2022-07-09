@@ -2,19 +2,40 @@
     width: 100%;
 
     .content {
-        display: flex;
+        justify-content: space-between;
+        padding-top: 65px;
     }
 
-    .menu_left {
-        width: 20%;
-        height: 100%vh;
-        background-color: rgb(42, 161, 165);
-        padding-top: 10px;
+    .menu_top {
+        width: 75%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 15px;
 
+        .btnsearch {
+            width: 250px;
+            margin-left: 15px;
+            font-weight: 600;
+        }
 
+        .selectForm {
+            .selectBox {
+                width: 200px;
+                font-weight: 600;
+                max-height: 50px;
+                margin-left: 15px;
+            }
+
+            .txtFilter {
+                margin-top: 8px;
+                font-weight: 600;
+            }
+        }
     }
 
     .list_products {
         width: 80%;
+        margin: 0 auto;
     }
 }

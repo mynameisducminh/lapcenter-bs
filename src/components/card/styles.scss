@@ -1,10 +1,23 @@
 .card-product {
     width: 250px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
     .image {
         width: 200px !important;
         height: 160px !important;
         margin-left: 25px !important;
+    }
+
+    .nameCard {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .chipCard {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
     }
 
     .infor-product {
@@ -18,6 +31,7 @@
             margin-top: -12px;
         }
     }
+
 
     .btn-view {
         text-align: center;

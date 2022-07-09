@@ -117,9 +117,9 @@ export default function ProductDetail() {
           <div className="contact col">
             <b>Điện thoại tư vấn - Đặt hàng</b>
             <ul>
-              <li>Thành Đạt: 12312312</li>
-              <li>Đức Minh: 12312231</li>
-              <li>Trung Tuấn: 22348383</li>
+              <li>Thành Đạt: 19001098</li>
+              <li>Đức Minh: 19008198</li>
+              <li>Trung Tuấn: 18992233</li>
             </ul>
             <b>Địa chỉ mua hàng</b>
             <ul>
@@ -155,11 +155,11 @@ export default function ProductDetail() {
               <td>{product?.disk}</td>
             </tr>
             <tr>
-              <td>CARD do hoa</td>
+              <td>CARD đồ họa</td>
               <td>{product?.card}</td>
             </tr>
             <tr>
-              <td>man hinh</td>
+              <td>Màn hình</td>
               <td>{product?.monitor}</td>
             </tr>
           </tbody>
