@@ -26,10 +26,18 @@ export default function Footer() {
         <div className="contact">
           <h5>Kênh xã hội</h5>
           <ul>
-            <li>Facebook</li>
-            <li>Intargram</li>
-            <li>Gmail</li>
-            <li>Zalo</li>
+            <li>
+              <i class="fa-brands fa-facebook"></i>
+            </li>
+            <li>
+              <i class="fa-brands fa-instagram"></i>
+            </li>
+            <li>
+              <i class="fa-solid fa-message"></i>
+            </li>
+            <li>
+              <i class="fa-solid fa-phone"></i>
+            </li>
           </ul>
         </div>
       </div>

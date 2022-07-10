@@ -6,7 +6,9 @@ const SameCard = ({ product }) => {
   const navigate = useNavigate();
 
   const moveToDetail = () => {
-    navigate(`/product/${product?._id}`);
+    navigate(`/product/${product?._id}`, {
+      state: { id: product._id, brand: product.brand },
+    });
   };
 
   return (
@@ -15,10 +17,7 @@ const SameCard = ({ product }) => {
       onClick={() => moveToDetail()}
       title={product?.name}
     >
-      <img
-        className="image"
-        src={product?.images[0]}
-      />
+      <img className="image" src={product?.images[0]} />
       <h4 className="name">{product?.name}</h4>
       <p className="price-text">{product?.price} VND</p>
     </div>

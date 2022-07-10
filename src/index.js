@@ -7,6 +7,8 @@ import ReactDOM from "react-dom/client";
 import Login from "./pages/login";
 import Register from "./pages/register/register";
 import ProductDetail from "./pages/productDetail/productDetail";
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
