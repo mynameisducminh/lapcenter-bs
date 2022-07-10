@@ -4,9 +4,9 @@ import Narbar from "../../components/nabar";
 import { data } from "../../data";
 import { Form, Button, Spinner } from "react-bootstrap";
 import "./styles.scss";
-import { SearchOutlined } from "@ant-design/icons";
 import axios from "axios";
 import Footer from "../../components/footer";
+import ReactPaginate from "react-paginate";
 
 export default function Home() {
   const [list, setlist] = useState([]);
@@ -72,7 +72,7 @@ export default function Home() {
   };
 
   const handleCallApi = (productName, productBrand, priceSort) => {
-    setLoading(true)
+    setLoading(true);
     axios
       .get(`https://lap-center-v1.herokuapp.com/api/product`, {
         params: {
@@ -85,10 +85,10 @@ export default function Home() {
       .then(function (response) {
         console.log("SUCCESS: ", response.data);
         setlist(response.data.products);
-        setLoading(false)
+        setLoading(false);
       })
       .catch(function (error) {
-        setLoading(false)
+        setLoading(false);
         console.log("ERROR: ", error);
       });
   };
@@ -108,6 +108,7 @@ export default function Home() {
               }}
               aria-describedby="passwordHelpBlock"
               className="inp"
+              placeholder="Nhập tên sản phẩm"
             />
             <Button
               variant="primary "
@@ -115,7 +116,7 @@ export default function Home() {
               onClick={onSubmitSearch}
             >
               Tìm kiếm
-              <SearchOutlined />
+              <i class="fa-solid fa-magnifying-glass"></i>
             </Button>{" "}
           </div>
           <div className="selectForm d-flex">
@@ -147,7 +148,7 @@ export default function Home() {
         </div>
 
         <div className="d-flex flex-wrap justify-content-lg-around list_products">
-          {(!loading && list.length > 0) ? (
+          {!loading && list.length > 0 ? (
             list.map((item) => <Card product={item} key={item.id} />)
           ) : (
             <div className="text-center">
@@ -156,6 +157,21 @@ export default function Home() {
               <Spinner animation="grow" size="sm" />
             </div>
           )}
+        </div>
+        <div className="pagination">
+          <ReactPaginate
+            previousLabel={"<"}
+            nextLabel={">"}
+            breakLabel={"..."}
+            breakClassName={"break-me"}
+            pageCount={50}
+            marginPagesDisplayed={2}
+            pageRangeDisplayed={4}
+            onPageChange={(e) => console.log("EEE:", e.selected + 1)}
+            containerClassName={"pagination"}
+            subContainerClassName={"pages pagination"}
+            activeClassName={"active"}
+          />
         </div>
       </div>
       <Footer />

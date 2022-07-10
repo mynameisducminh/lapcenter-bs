@@ -1,7 +1,6 @@
 import React from "react";
 import "./styles.scss";
 import { Link } from "react-router-dom";
-import { LaptopOutlined } from "@ant-design/icons";
 
 export default function Narbar() {
   return (
@@ -12,7 +11,7 @@ export default function Narbar() {
             <li>
               <Link to="/">
                 LAPCENTER
-                <LaptopOutlined />{" "}
+                <i class="fa-solid fa-laptop"></i>
               </Link>
             </li>
           </h3>

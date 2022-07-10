@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Narbar from "../../components/nabar";
 import "./productDetail.scss";
-import { Button } from "react-bootstrap";
+import { Button, Spinner } from "react-bootstrap";
 import Footer from "../../components/footer";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
@@ -30,13 +30,16 @@ const responsive = {
 };
 export default function ProductDetail() {
   const { state } = useLocation();
+  const location = useLocation()
   const [product, setProduct] = useState();
   const [productsBrand, setProductsBrand] = useState();
   const [image, setImage] = useState("");
+  const [loading, setLoading] = useState(true);
   console.log("product id: ", state.id);
 
   //callAPI
   const getProductId = () => {
+    setLoading(true);
     axios
       .get(
         `https://lap-center-v1.herokuapp.com/api/product/getProductById/${state.id}`
@@ -45,15 +48,18 @@ export default function ProductDetail() {
         const data = response.data.response;
         console.log("SUCCESS: ", data);
         setProduct(data);
+        setLoading(false);
         setImage(data.images[0]);
       })
       .catch(function (error) {
+        setLoading(false);
         console.log("ERROR: ", error);
       })
       .then(function () {});
   };
 
   const getProductBrand = () => {
+    setLoading(true);
     axios
       .get(`https://lap-center-v1.herokuapp.com/api/product`, {
         params: {
@@ -63,8 +69,10 @@ export default function ProductDetail() {
       .then(function (response) {
         console.log("SUCCESS 1: ", response.data);
         setProductsBrand(response.data.products);
+        setLoading(false);  
       })
       .catch(function (error) {
+        setLoading(false);
         console.log("ERROR 1: ", error);
       });
   };
@@ -72,108 +80,119 @@ export default function ProductDetail() {
   useEffect(() => {
     getProductId();
     getProductBrand();
-  }, []);
+    console.log("ham nay chay 1 lan duy nhat");
+  }, [location]);
 
   return (
     <>
       <Narbar />
-      <div className="productDetailcontainer">
-        <div className="title">
-          <h3>{product?.name}</h3>
-          <span>Tình trạng: còn hàng</span>
-          <span className="mx-4">Bảo hành: 24 tháng</span>
-        </div>
-        <hr />
-        <div className="info row">
-          <div className="productImage col">
-            <img src={image} alt="" className="image" />
-            <div className="text-center">
-              {product?.images.length > 0 &&
-                product?.images.map((item, index) => (
-                  <img
-                    src={item}
-                    alt=""
-                    className="imgSmail"
-                    key={index}
-                    onClick={() => setImage(item)}
-                  />
-                ))}
+      {!loading ? (
+        <div>
+          <div className="productDetailcontainer">
+            <div className="title">
+              <h3>{product?.name}</h3>
+              <span>Tình trạng: còn hàng</span>
+              <span className="mx-4">Bảo hành: 24 tháng</span>
             </div>
-          </div>
-          <div className="price col">
-            <span>Giá bán</span>{" "}
-            <span className="amount">{product?.price} VND</span>
-            <div className="gift">Khuyến mãi: Quà tặng</div>
-            <div className="gitInfo">Thông tin quà tặng</div>
-            <div className="text-center">
-              <Button className="my-4 bg-danger">Mua Ngay</Button>
-              <br />
-              <span>
-                Gọi ngay <span className="text-danger h4">036 879 6524</span> để giữ
-                hàng
-              </span>
+            <hr />
+            <div className="info row">
+              <div className="productImage col">
+                <img src={image} alt="" className="image" />
+                <div className="text-center">
+                  {product?.images.length > 0 &&
+                    product?.images.map((item, index) => (
+                      <img
+                        src={item}
+                        alt=""
+                        className="imgSmail"
+                        key={index}
+                        onClick={() => setImage(item)}
+                      />
+                    ))}
+                </div>
+              </div>
+              <div className="price col">
+                <span>Giá bán</span>{" "}
+                <span className="amount">{product?.price} VND</span>
+                <div className="gift">Khuyến mãi: Quà tặng</div>
+                <div className="gitInfo">Thông tin quà tặng</div>
+                <div className="text-center">
+                  <Button className="my-4 bg-danger">Mua Ngay</Button>
+                  <br />
+                  <span>
+                    Gọi ngay{" "}
+                    <span className="text-danger h4">036 879 6524</span> để giữ
+                    hàng
+                  </span>
+                </div>
+              </div>
+              <div className="contact col">
+                <b>Điện thoại tư vấn - Đặt hàng</b>
+                <ul>
+                  <li>Thành Đạt: 19001098</li>
+                  <li>Đức Minh: 19008198</li>
+                  <li>Trung Tuấn: 18992233</li>
+                </ul>
+                <b>Địa chỉ mua hàng</b>
+                <ul>
+                  <li>Đà Nẵng: 179 Nguyẽn Văn Linh</li>
+                  <li>Huế: 89 Hùng Vương</li>
+                  <li>Laos: 89 Lê Đình Lý</li>
+                </ul>
+              </div>
             </div>
+            <hr />
+            <table className="table my-5 table-secondary ">
+              <thead>
+                <tr>
+                  <th scope="col">PHẦN CỨNG</th>
+                  <th scope="col">THÔNG SỐ KỸ THUẬT</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Model</td>
+                  <td>{product?.model}</td>
+                </tr>
+                <tr>
+                  <td>CPU</td>
+                  <td>{product?.cpu}</td>
+                </tr>
+                <tr>
+                  <td>RAM</td>
+                  <td>{product?.ram}</td>
+                </tr>
+                <tr>
+                  <td>Ổ cứng</td>
+                  <td>{product?.disk}</td>
+                </tr>
+                <tr>
+                  <td>CARD đồ họa</td>
+                  <td>{product?.card}</td>
+                </tr>
+                <tr>
+                  <td>Màn hình</td>
+                  <td>{product?.monitor}</td>
+                </tr>
+              </tbody>
+            </table>
+            <p className="text-danger h5">Sản phẩm cùng thương hiệu </p>
+            <hr />
           </div>
-          <div className="contact col">
-            <b>Điện thoại tư vấn - Đặt hàng</b>
-            <ul>
-              <li>Thành Đạt: 19001098</li>
-              <li>Đức Minh: 19008198</li>
-              <li>Trung Tuấn: 18992233</li>
-            </ul>
-            <b>Địa chỉ mua hàng</b>
-            <ul>
-              <li>Đà Nẵng: 179 Nguyẽn Văn Linh</li>
-              <li>Huế: 89 Hùng Vương</li>
-              <li>Laos: 89 Lê Đình Lý</li>
-            </ul>
-          </div>
+          <Carousel responsive={responsive}>
+            {productsBrand?.length > 0 &&
+              productsBrand?.map((item, index) => (
+                <SameCard product={item} key={index} />
+              ))}
+          </Carousel>
         </div>
-        <hr />
-        <table className="table my-5 table-secondary ">
-          <thead>
-            <tr>
-              <th scope="col">PHẦN CỨNG</th>
-              <th scope="col">THÔNG SỐ KỸ THUẬT</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Model</td>
-              <td>{product?.model}</td>
-            </tr>
-            <tr>
-              <td>CPU</td>
-              <td>{product?.cpu}</td>
-            </tr>
-            <tr>
-              <td>RAM</td>
-              <td>{product?.ram}</td>
-            </tr>
-            <tr>
-              <td>Ổ cứng</td>
-              <td>{product?.disk}</td>
-            </tr>
-            <tr>
-              <td>CARD đồ họa</td>
-              <td>{product?.card}</td>
-            </tr>
-            <tr>
-              <td>Màn hình</td>
-              <td>{product?.monitor}</td>
-            </tr>
-          </tbody>
-        </table>
-        <p className="text-danger h5">Sản phẩm cùng thương hiệu </p>
-        <hr />
-      </div>
-      <Carousel responsive={responsive}>
-        {productsBrand?.length > 0 &&
-          productsBrand?.map((item, index) => (
-            <SameCard product={item} key={index} />
-          ))}
-      </Carousel>
-      ;
+      ) : (
+        <div className="text-center">
+          <Spinner animation="grow" size="sm" />
+          <Spinner animation="grow" size="sm" />
+          <Spinner animation="grow" size="sm" />
+        </div>
+      )}
       <Footer />
     </>
   );
