@@ -19,24 +19,49 @@ export default function Footer() {
           <ul>
             <li>Đà Nẵng: 179 Nguyẽn Văn Linh</li>
             <li>Huế: 89 Hùng Vương</li>
-            <li>Laos: 89 Lê Đình Lý</li>
-            <li>China: 89 Lê Đình Lý</li>
+            <li>A Lưới: 24 Hồ Chí Minh</li>
+            <li>Quảng Bình: 70 Ngô Đình Diệm</li>
           </ul>
         </div>
         <div className="contact">
           <h5>Kênh xã hội</h5>
           <ul>
             <li>
-              <i class="fa-brands fa-facebook"></i>
+              <a
+                href="https://www.facebook.com/ducminh2412/"
+                target="_blank"
+                class="faa-parent animated-hover"
+              >
+                <i class="faa-tada fab fa-facebook-f"></i>
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="https://www.instagram.com/ldminh_/"
+                target="_blank"
+                class="faa-parent animated-hover"
+              >
+                <i class="fa-brands fa-instagram"></i>
+              </a>
             </li>
             <li>
-              <i class="fa-brands fa-instagram"></i>
+              <a
+                href="https://mail.google.com/mail/u/0/#inbox"
+                target="_blank"
+                class="faa-parent animated-hover"
+              >
+                <i class="fa-solid fa-at"></i>
+              </a>
             </li>
             <li>
-              <i class="fa-solid fa-message"></i>
-            </li>
-            <li>
-              <i class="fa-solid fa-phone"></i>
+              <a
+                href="https://www.facebook.com/ducminh2412/"
+                target="_blank"
+                class="faa-parent animated-hover"
+              >
+                <i class="fa-solid fa-phone"></i>
+              </a>
             </li>
           </ul>
         </div>

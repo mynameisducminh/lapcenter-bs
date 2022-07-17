@@ -8,11 +8,16 @@
         margin: 0 auto;
         display: flex;
         justify-content: space-between;
-        
+
 
         .contact {
+            
             ul li {
-                List-style: none
+                List-style: none;
+
+                .fa-instagram {
+                   color: red
+               }
             }
         }
     }
