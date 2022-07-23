@@ -4,6 +4,7 @@ import Narbar from "../../components/nabar";
 import "./register.scss";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import iconHome from "../../assets/imgs/iconHome.png"
 
 export default function Register() {
   const navigate = useNavigate();
@@ -46,7 +47,8 @@ export default function Register() {
   };
   return (
     <div className="register-container">
-      <Narbar />
+      {/* <Narbar /> */}
+      <img src={iconHome} alt="" width={45} height={45} className='iconHome' title='Trang chủ' onClick={() => navigate('/')}/>
       <div className="form-register">
         <h2>Đăng Ký</h2>
         <Form>
@@ -55,13 +57,13 @@ export default function Register() {
             className="mb-3 d-flex justify-content-between"
             controlId="formPlaintextEmail"
           >
-            <Form.Label column sm="3">
-              Customer's name
+            <Col sm="12">
+            <Form.Label>
+              Tên khách hàng
             </Form.Label>
-            <Col sm="9">
               <Form.Control
                 type="text"
-                placeholder="Name"
+                placeholder="Tên khách hàng"
                 onChange={(e) => handleChane(e.target.value, "name")}
               />
             </Col>
@@ -71,13 +73,13 @@ export default function Register() {
             className="mb-3 d-flex justify-content-between"
             controlId="formPlaintextPassword"
           >
-            <Form.Label column sm="3">
-              Email
+            <Col sm="12">
+            <Form.Label>
+            Email hoặc số điện thoại
             </Form.Label>
-            <Col sm="9">
               <Form.Control
                 type="text"
-                placeholder="Email"
+                placeholder="Email hoặc số điện thoại"
                 onChange={(e) => handleChane(e.target.value, "email")}
               />
             </Col>
@@ -87,13 +89,13 @@ export default function Register() {
             className="mb-3 d-flex justify-content-between"
             controlId="formPlaintextPassword"
           >
-            <Form.Label column sm="3">
-              Phone
+            <Col sm="12">
+            <Form.Label>
+              So dien thoai
             </Form.Label>
-            <Col sm="9">
               <Form.Control
                 type="text"
-                placeholder="Phone"
+                placeholder="So dien thoai"
                 onChange={(e) => handleChane(e.target.value, "phone")}
               />
             </Col>
@@ -103,13 +105,13 @@ export default function Register() {
             className="mb-3 d-flex justify-content-between"
             controlId="formPlaintextEmail"
           >
+            <Col sm="12">
             <Form.Label column sm="3">
-              Password
+              Mat Khau
             </Form.Label>
-            <Col sm="9">
               <Form.Control
                 type="Password"
-                placeholder="Password"
+                placeholder="Mat Khau"
                 onChange={(e) => handleChane(e.target.value, "password")}
               />
             </Col>

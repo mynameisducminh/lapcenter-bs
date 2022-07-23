@@ -16,6 +16,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [totalPage, setTotalPage] = useState(0);
   const [page, setPage] = useState(1);
+  const customerName = localStorage.getItem("customerName");
 
   useEffect(() => {
     console.log("ham nay chay dau tien");
@@ -107,7 +108,7 @@ export default function Home() {
           orderByColumn: "price",
           orderByDirection: priceSort,
           pageSize: 6,
-          pageNumber: page
+          pageNumber: page,
         },
       })
       .then(function (response) {
@@ -172,6 +173,14 @@ export default function Home() {
               <option value="asc">Từ thấp đến cao</option>
               <option value="desc">Từ cao đến thấp</option>
             </select>
+          </div>
+          <div>
+            {customerName && (
+              <>
+                <span className="text-success">Chao Mung</span>{" "}
+                <span className="h5">{customerName}</span>
+              </>
+            )}
           </div>
         </div>
 
