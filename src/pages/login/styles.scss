@@ -1,27 +1,44 @@
 .logincontainer {
     width: 100%;
+    //width = 100% => la tong chieu dai cac phan tu con cong lai
+    //width = 100hv => la tong chieu rong cua trinh duyet
     height: 100vh;
+    //height = 100% => la tong chieu dai cac phan tu con cong lai
+    //height = 100hv => la tong chieu dai cua trinh duyet
     background: url(https://cdn.sforum.vn/sforum/wp-content/uploads/2022/02/man-hinh-laptop-bi-den.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     padding-top: 65px;
-    
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .iconHome {
+        top: 10px;
+        left: 10px;
+        position: absolute;
+        border-radius: 50%;
+    }
+
 
     .formlogin {
-        width: 500px;
+
+        width: 700px;
         height: auto;
         padding: 50px;
         margin: 0 auto;
         background-color: white;
-        margin-top: 100px;
+        // margin-top: 100px;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-        border-radius: 10px;
+        border-radius: 20px;
 
         h2 {
             text-align: center;
             margin-bottom: 30px;
         }
+
 
         .dk {
             float: right;
