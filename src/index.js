@@ -8,7 +8,7 @@ import Login from "./pages/login";
 import Register from "./pages/register/register";
 import ProductDetail from "./pages/productDetail/productDetail";
 import '@fortawesome/fontawesome-free/css/all.min.css';
-
+import BuyNow from "./pages/buy";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -20,6 +20,7 @@ root.render(
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/product/:productId" element={<ProductDetail />} />
+        <Route path="/buy" element={<BuyNow />} />
       </Routes>
     </BrowserRouter>{" "}
   </React.StrictMode>
