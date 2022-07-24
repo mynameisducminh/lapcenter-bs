@@ -3,6 +3,11 @@ import "./styles.scss";
 import { Link } from "react-router-dom";
 
 export default function Narbar() {
+  const accessToken = localStorage.getItem("accessToken");
+
+  const handleLogout = () => {
+    localStorage.clear();
+  };
   return (
     <div className="d-flex justify-content-between navbar-container">
       <div className="logoicon">
@@ -28,9 +33,15 @@ export default function Narbar() {
           <li>
             <Link to="/asd">Liên Hệ</Link>
           </li>
-          <li>
-            <Link to="/login">Đăng Nhập</Link>
-          </li>
+          {accessToken ? (
+            <li onClick={handleLogout}>
+              <Link to="login">Đăng Xuất</Link>
+            </li>
+          ) : (
+            <li>
+              <Link to="login">Đăng Nhập</Link>
+            </li>
+          )}
         </ul>
       </div>
     </div>

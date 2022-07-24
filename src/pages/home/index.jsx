@@ -177,8 +177,8 @@ export default function Home() {
           <div>
             {customerName && (
               <>
-                <span className="text-success">Chao Mung</span>{" "}
-                <span className="h5">{customerName}</span>
+                <span className="text-success">Chào Mừng</span>{" "}
+                <p className="h6">{customerName}</p>
               </>
             )}
           </div>
