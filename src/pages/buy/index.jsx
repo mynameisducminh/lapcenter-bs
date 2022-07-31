@@ -200,12 +200,14 @@ const BuyNow = () => {
             </Col>
           </Form.Group>
           <div className="d-flex justify-content-center mt-4">
-            <Button variant="success" disabled={disable}>Đặt hàng</Button>{" "}
+            <Button variant="success" className="mb-5" disabled={disable}>
+              Đặt hàng
+            </Button>{" "}
           </div>
         </Form>
       </div>
+      <Footer />;
     </div>
   );
 };
-<Footer />;
 export default BuyNow;
