@@ -1,6 +1,7 @@
 .buyContainer {
     width: 100%;
     margin-top: 65px;
+    padding-bottom: 50px;
 
     .content {
         width: 60%;
@@ -8,7 +9,7 @@
         margin-top: 65px;
     }
 
-    
+
     .fa-plus {
         color: aquamarine;
     }
@@ -17,12 +18,23 @@
         color: aquamarine;
     }
 
-    .inp{
+    .inp {
         width: 40px;
         height: 40px;
     }
 
     .mx-2 {
         margin-top: -5px;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
     }
 }
