@@ -93,12 +93,12 @@ export default function Register() {
           >
             <Col sm="12">
             <Form.Label>
-              So dien thoai
+              Số điện thoại
             </Form.Label>
               <Form.Control
                 type="text"
-                placeholder="So dien thoai"
                 value={phone}
+                placeholder="Số điện thoại"
                 onChange={(e) => handleChane(e.target.value, "phone")}
               />
             </Col>
@@ -115,24 +115,6 @@ export default function Register() {
               <Form.Control
                 type="Password"
                 placeholder="Mật khẩu"
-                value={password}
-                onChange={(e) => handleChane(e.target.value, "password")}
-              />
-            </Col>
-          </Form.Group>
-          <Form.Group
-            as={Row}
-            className="mb-3 d-flex justify-content-between"
-            controlId="formPlaintextEmail"
-          >
-            <Col sm="12">
-            <Form.Label column sm="3">
-              Nhập lại mật khẩu
-            </Form.Label>
-              <Form.Control
-                type="Password"
-                placeholder="Nhập lại mật khẩu"
-                value={password}
                 onChange={(e) => handleChane(e.target.value, "password")}
               />
             </Col>

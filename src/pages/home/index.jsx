@@ -17,9 +17,9 @@ export default function Home() {
   const [totalPage, setTotalPage] = useState(0);
   const [page, setPage] = useState(1);
   const customerName = localStorage.getItem("customerName");
-
+        
   useEffect(() => {
-    console.log("ham nay chay dau tien");
+    console.log("hàm này chạy đầu tiên");
     // fetchAPI();
     fetchAxios();
   }, []);
@@ -39,7 +39,7 @@ export default function Home() {
 
     axios
       .get(
-        "https://lap-center-v1.herokuapp.com/api/product?pageSize=6&pageNumber=1"
+        "https://lap-center.herokuapp.com/api/product?pageSize=6&pageNumber=1"
       )
       .then(function (response) {
         console.log("SUCCESS: ", response.data);
@@ -83,7 +83,7 @@ export default function Home() {
 
     axios
       .get(
-        `https://lap-center-v1.herokuapp.com/api/product?pageSize=6&pageNumber=${pageNumber}`
+        `https://lap-center.herokuapp.com/api/product?pageSize=6&pageNumber=${pageNumber}`
       )
       .then(function (response) {
         console.log("SUCCESS: ", response.data);
@@ -101,7 +101,7 @@ export default function Home() {
   const handleCallApi = (productName, productBrand, priceSort) => {
     setLoading(true);
     axios
-      .get(`https://lap-center-v1.herokuapp.com/api/product`, {
+      .get(`https://lap-center.herokuapp.com/api/product`, {
         params: {
           productName: productName,
           productBrand: productBrand,

@@ -3,7 +3,7 @@ import Narbar from "../../components/nabar";
 import "./productDetail.scss";
 import { Button, Spinner } from "react-bootstrap";
 import Footer from "../../components/footer";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -30,7 +30,8 @@ const responsive = {
 };
 export default function ProductDetail() {
   const { state } = useLocation();
-  const location = useLocation()
+  const location = useLocation();
+  const navigate = useNavigate();
   const [product, setProduct] = useState();
   const [productsBrand, setProductsBrand] = useState();
   const [image, setImage] = useState("");
@@ -42,7 +43,7 @@ export default function ProductDetail() {
     setLoading(true);
     axios
       .get(
-        `https://lap-center-v1.herokuapp.com/api/product/getProductById/${state.id}`
+        `https://lap-center.herokuapp.com/api/product/getProductById/${state.id}`
       )
       .then(function (response) {
         const data = response.data.response;
@@ -61,7 +62,7 @@ export default function ProductDetail() {
   const getProductBrand = () => {
     setLoading(true);
     axios
-      .get(`https://lap-center-v1.herokuapp.com/api/product`, {
+      .get(`https://lap-center.herokuapp.com/api/product`, {
         params: {
           productBrand: state.brand,
         },
@@ -69,7 +70,7 @@ export default function ProductDetail() {
       .then(function (response) {
         console.log("SUCCESS 1: ", response.data);
         setProductsBrand(response.data.products);
-        setLoading(false);  
+        setLoading(false);
       })
       .catch(function (error) {
         setLoading(false);
@@ -117,7 +118,16 @@ export default function ProductDetail() {
                 <div className="gift">Khuyến mãi: Quà tặng</div>
                 <div className="gitInfo">Thông tin quà tặng</div>
                 <div className="text-center">
-                  <Button className="my-4 bg-danger">Mua Ngay</Button>
+                  <Button
+                    className="my-4 bg-danger"
+                    onClick={() => {
+                      navigate(`/buy/${product._id}`, {
+                        state: { id: product._id },
+                      });
+                    }}
+                  >
+                    Mua Ngay
+                  </Button>
                   <br />
                   <span>
                     Gọi ngay{" "}
