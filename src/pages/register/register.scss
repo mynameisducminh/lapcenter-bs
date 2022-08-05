@@ -1,13 +1,17 @@
 .register-container {
     width: 100%;
-    height: 100%vh;
+    height: 100vh;
     background: url(https://hinhanhdep.net/wp-content/uploads/2018/01/bo-suu-tap-hinh-nen-cuc-chat-danh-cho-dan-6.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     cursor: pointer;
-    padding-top: 65px;
-    
+    // padding-top: 65px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 
     .iconHome {
         top: 10px;
@@ -15,19 +19,19 @@
         position: absolute;
         border-radius: 50%;
     }
-    
+
 
     .form-register {
         width: 700px;
         height: auto;
         padding: 50px;
         margin: 0 auto;
-        background-color: white;
-        margin-top: 100px;
-        box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+        background: #FFEFBA;
+        background: -webkit-linear-gradient(to right, #FFFFFF, #FFEFBA);
+        background: linear-gradient(to right, #FFFFFF, #FFEFBA);
+        box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
         border-radius: 10px;
-        padding: auto;
-
+        // margin-top: 100px;
 
         h2 {
             text-align: center;
