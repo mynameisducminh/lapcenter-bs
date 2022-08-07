@@ -8,6 +8,7 @@ export default function Narbar() {
   const handleLogout = () => {
     localStorage.clear();
   };
+  
   return (
     <div className="d-flex justify-content-between navbar-container">
       <div className="logoicon">

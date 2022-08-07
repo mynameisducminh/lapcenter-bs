@@ -17,12 +17,13 @@ const BuyNow = () => {
   const [address, setAddess] = useState();
   const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(true);
-
   const [totalprice, setTotalprice] = useState(0);
   const [product, setProduct] = useState();
   const [image, setImage] = useState("");
   console.log("STATE ID: ", state.id);
   const [modalShow, setModalShow] = useState(false);
+  const [modalConfirm, setModalConfirm] = useState(false);
+  const [message, setMessage] = useState();
 
   const getProductId = () => {
     setLoading(true);
@@ -83,6 +84,32 @@ const BuyNow = () => {
         setTotalprice((quantity - 1) * product?.price);
       }
     }
+  };
+
+  const handleOrderProduct = () => {
+    setLoading(true);
+    axios
+      .post("https://lap-center.herokuapp.com/api/order/addOrder", {
+        customerName: name,
+        phone: phone,
+        email: email,
+        address: address,
+        productName: product?.name,
+        productBrand: product?.brand,
+        quantity: quantity,
+        orderStatus: 1,
+      })
+      .then((res) => {
+        setModalConfirm(true);
+        setMessage("Tạo đơn hàng thành công");
+        setLoading(false);
+      })
+      .catch((err) => {
+        setModalConfirm(true);
+        setMessage("Tạo đơn hàng thất bại");
+        setLoading(false);
+      });
+    setModalShow(false);
   };
 
   useEffect(() => {
@@ -226,13 +253,17 @@ const BuyNow = () => {
       <Modal
         show={modalShow}
         onHide={() => setModalShow(false)}
+        backdrop="static"
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
         <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            Xac nhan thong tin
+          <Modal.Title
+            id="contained-modal-title-vcenter"
+            className="text-danger"
+          >
+            Xác nhận thông tin
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -242,38 +273,57 @@ const BuyNow = () => {
             </div>
             <div>
               <div>
-                <h5> Thong tin san pham</h5>
-                <span>Ten san pham: </span>
-                <span>{product?.name}</span>
+                <h5> Thông tin sản phẩm</h5>
+                <span className="ml-2">Tên sản phẩm: </span>
+                <span className="fw-bold">{product?.name}</span>
                 <br />
-                <span>Hang: </span>
-                <span>{product?.brand}</span>
+                <span className="ml-2">Hang: </span>
+                <span className="fw-bold">{product?.brand}</span>
                 <br />
-                <span>So luong: </span>
-                <span>{quantity}</span>
+                <span className="fw-bold">So luong: </span>
                 <br />
-                <span>Tong thanh toan: </span>
-                <span>{totalprice}</span>
+                <span className="ml-2">Tong thanh toan: </span>
+                <span className="fw-bold">{totalprice} VND</span>
               </div>
               <div>
                 <h5> Thong tin khach hang</h5>
-                <span>Ten khach hang: </span>
-                <span>{name}</span>
+                <span className="ml-2">Ten khach hang: </span>
+                <span className="fw-bold">{name}</span>
                 <br />
-                <span>So dien thoai: </span>
-                <span>{phone}</span>
+                <span className="ml-2">So dien thoai: </span>
+                <span className="fw-bold">{phone}</span>
                 <br />
-                <span>Email: </span>
-                <span>{email}</span>
+                <span className="ml-2">Email: </span>
+                <span className="fw-bold">{email}</span>
                 <br />
-                <span>Dia chi nhan hang: </span>
-                <span>{address}</span>
+                <span className="ml-2">Dia chi nhan hang: </span>
+                <span className="fw-bold">{address}</span>
               </div>
             </div>
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={() => setModalShow(false)}>Close</Button>
+          <Button onClick={handleOrderProduct}>Xác nhận</Button>
+        </Modal.Footer>
+      </Modal>
+      <Modal
+        show={modalConfirm}
+        onHide={() => setModalConfirm(false)}
+        backdrop="static"
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            Thông báo đơn hàng
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>{message}</p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={() => setModalConfirm(false)}>Close</Button>
         </Modal.Footer>
       </Modal>
     </div>
