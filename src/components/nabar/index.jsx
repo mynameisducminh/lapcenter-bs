@@ -1,12 +1,14 @@
 import React from "react";
 import "./styles.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Narbar() {
   const accessToken = localStorage.getItem("accessToken");
+  const navigate = useNavigate()
 
   const handleLogout = () => {
     localStorage.clear();
+    navigate('/')
   };
   
   return (
@@ -36,11 +38,11 @@ export default function Narbar() {
           </li>
           {accessToken ? (
             <li onClick={handleLogout}>
-              <Link to="login">Đăng Xuất</Link>
+              <p className="logout">Đăng xuất</p>
             </li>
           ) : (
             <li>
-              <Link to="login">Đăng Nhập</Link>
+              <Link to="/login">Đăng Nhập</Link>
             </li>
           )}
         </ul>
