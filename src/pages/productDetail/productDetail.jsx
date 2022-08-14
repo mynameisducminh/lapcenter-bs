@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Narbar from "../../components/nabar";
 import "./productDetail.scss";
-import { Button, Spinner } from "react-bootstrap";
+import { Button, Spinner, Modal } from "react-bootstrap";
 import Footer from "../../components/footer";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import SameCard from "../../components/SameCard";
+
 
 const responsive = {
   superLargeDesktop: {
@@ -36,6 +37,10 @@ export default function ProductDetail() {
   const [productsBrand, setProductsBrand] = useState();
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(true);
+  const isLogin = localStorage.getItem("customerName");
+  const userId = localStorage.getItem("userId");
+  const [modalConfirm, setModalConfirm] = useState(false);
+  const [message, setMessage] = useState();
   console.log("product id: ", state.id);
 
   //callAPI
@@ -76,6 +81,34 @@ export default function ProductDetail() {
         setLoading(false);
         console.log("ERROR 1: ", error);
       });
+  };
+
+  const handleAddToCart = () => {
+    setLoading(true);
+    axios
+      .post("https://lap-center.herokuapp.com/api/cart/addProductToCart", {
+        userId: userId,
+        // productId: state.id,
+        productId: product._id,
+        productName: product.name,
+        productBrand: product.brand,
+        image: image,
+        // image: product.images[0],
+        price: product.price
+        })
+      .then((res) => {
+        setModalConfirm(true);
+        console.log("SUCCESS")
+        setMessage("Thêm đơn hàng thành công");
+        setLoading(false);
+      })
+      .catch((err) => {
+        setModalConfirm(true);
+        console.log("ERROR")
+        setMessage("Thêm đơn hàng thất bại");
+        setLoading(false);
+      });
+    // setModalShow(false);
   };
 
   useEffect(() => {
@@ -128,6 +161,12 @@ export default function ProductDetail() {
                   >
                     Mua Ngay
                   </Button>
+                  <br />
+                  {isLogin && (
+                    <Button className="my-4 bg-success" onClick={handleAddToCart}>
+                      Thêm vào giỏ hàng
+                    </Button>
+                  )}
                   <br />
                   <span>
                     Gọi ngay{" "}
@@ -204,6 +243,27 @@ export default function ProductDetail() {
         </div>
       )}
       <Footer />
+      
+      <Modal
+        show={modalConfirm}
+        onHide={() => setModalConfirm(false)}
+        backdrop="static"
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            Thông báo đơn hàng
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>{message}</p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={() => setModalConfirm(false)}>Close</Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }
