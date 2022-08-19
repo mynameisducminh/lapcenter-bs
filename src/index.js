@@ -9,6 +9,7 @@ import Register from "./pages/register/register";
 import ProductDetail from "./pages/productDetail/productDetail";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import BuyNow from "./pages/buy";
+import MyCarts from "./pages/carts";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -21,6 +22,7 @@ root.render(
         <Route path="/register" element={<Register />} />
         <Route path="/product/:productId" element={<ProductDetail />} />
         <Route path="/buy/:productId" element={<BuyNow />} />
+        <Route path="/myCarts" element={<MyCarts />} />
       </Routes>
     </BrowserRouter>{" "}
   </React.StrictMode>
