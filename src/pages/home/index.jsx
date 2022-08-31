@@ -7,6 +7,7 @@ import "./styles.scss";
 import axios from "axios";
 import Footer from "../../components/footer";
 import ReactPaginate from "react-paginate";
+import MyCartIcon from "../../components/myCartAndHistory";
 
 export default function Home() {
   const [list, setlist] = useState([]);
@@ -17,7 +18,7 @@ export default function Home() {
   const [totalPage, setTotalPage] = useState(0);
   const [page, setPage] = useState(1);
   const customerName = localStorage.getItem("customerName");
-        
+
   useEffect(() => {
     console.log("hàm này chạy đầu tiên");
     // fetchAPI();
@@ -125,6 +126,8 @@ export default function Home() {
   return (
     <div className="homecontainer">
       <Narbar />
+      {/* && la chi thuc hien khi dieu kien tra ve dung, con sai thi thoi!!! */}
+      {customerName && <MyCartIcon />}
       <div className="content">
         <div className="menu_top">
           <div className="d-flex">

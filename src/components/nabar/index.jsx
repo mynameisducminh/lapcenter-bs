@@ -9,6 +9,7 @@ export default function Narbar() {
   const handleLogout = () => {
     localStorage.clear();
     navigate('/')
+    window.location.reload();
   };
   
   return (
