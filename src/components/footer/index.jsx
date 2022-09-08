@@ -17,7 +17,7 @@ export default function Footer() {
         <div className="brand">
           <h5>Chi nhánh</h5>
           <ul>
-            <li>Đà Nẵng: 179 Nguyẽn Văn Linh</li>
+            <li>Đà Nẵng: 179 Nguyễn Văn Linh</li>
             <li>Huế: 89 Hùng Vương</li>
             <li>A Lưới: 24 Hồ Chí Minh</li>
             <li>Quảng Bình: 70 Ngô Đình Diệm</li>

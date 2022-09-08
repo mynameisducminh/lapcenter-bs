@@ -33,10 +33,10 @@ const BuyNow = () => {
       )
       .then(function (response) {
         const data = response.data.response;
-        console.log("SUCCESS: ", data);
+        console.log("SUCCESS: ",response );
         setProduct(data);
         setLoading(false);
-        setImage(data.images[0]);
+        setImage(data?.images[0]);
         setTotalprice(1 * data.price);
       })
       .catch(function (error) {
@@ -45,6 +45,7 @@ const BuyNow = () => {
       })
       .then(function () {});
   };
+  console.log("state: ", state);
 
   const handleChane = (val, field) => {
     if (field === "name") {

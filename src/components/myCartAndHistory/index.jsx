@@ -15,7 +15,7 @@ const MyCartIcon = () => {
         <img src={iconHistory} alt="" width={32} height={32} />
       </div>
     </div>
-  );
+  );  
 };
 
 export default MyCartIcon;
