@@ -48,7 +48,7 @@ export default function ProductDetail() {
     setLoading(true);
     axios
       .get(
-        `https://lap-center.herokuapp.com/api/product/getProductById/${state.id}`
+        `https://lap-center.herokuapp.com/api/product/getProductById/${state  .id}`
       )
       .then(function (response) {
         const data = response.data.response;
