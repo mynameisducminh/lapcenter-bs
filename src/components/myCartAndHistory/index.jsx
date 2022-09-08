@@ -11,7 +11,7 @@ const MyCartIcon = () => {
       <div className="myCart" onClick={() => navigate("/myCarts")}>
         <img src={iconCart} alt="" width={32} height={32} />
       </div>
-      <div className="myHistory" onClick={() => navigate("/myCarts")}>
+      <div className="myHistory" onClick={() => navigate("/myHistory")}>
         <img src={iconHistory} alt="" width={32} height={32} />
       </div>
     </div>
