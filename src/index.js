@@ -10,8 +10,12 @@ import ProductDetail from "./pages/productDetail/productDetail";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import BuyNow from "./pages/buy";
 import MyCarts from "./pages/carts";
+import Orders from "./pages/admin/orders";
+import PageNotFound from "./pages/pageNotFound";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+const isAdmin = localStorage.getItem("isAdmin");
+
 root.render(
   <React.StrictMode>
     <BrowserRouter>
@@ -23,6 +27,8 @@ root.render(
         <Route path="/product/:productId" element={<ProductDetail />} />
         <Route path="/buy/:productId" element={<BuyNow />} />
         <Route path="/myCarts" element={<MyCarts />} />
+        <Route path="/*" element={<PageNotFound />} />
+        {isAdmin === "false" && <Route path="/orders" element={<Orders />} />}
       </Routes>
     </BrowserRouter>{" "}
   </React.StrictMode>

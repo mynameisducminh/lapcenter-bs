@@ -35,10 +35,11 @@ export default function Login() {
         // - setItem => dùng để đặt tên biến và giá trị
         // - getItem => dùng để lấy giá trị cần lấy
         // - removeItem => xóa tên biến và giá trị cúa biển đó ra khỏi store
-        //clear => xóa tất cả các biến và giá trị của nó khỏi store
+        // - clear => xóa tất cả các biến và giá trị của nó khỏi store
         localStorage.setItem("customerName", response.data.userName);
         localStorage.setItem("accessToken", response.data.token);
         localStorage.setItem("userId", response.data.userId);
+        localStorage.setItem("isAdmin", response.data?.isAdmin);
         navigate("/");
       })
       .catch(function (error) {
