@@ -8,6 +8,11 @@ import axios from "axios";
 import Footer from "../../components/footer";
 import ReactPaginate from "react-paginate";
 import MyCartIcon from "../../components/myCartAndHistory";
+import Carousel from "react-multi-carousel";
+import imgMsibravo from "../../assets/imgs/msibravo.jpg";
+import imgMsi from "../../assets/imgs/msi.jpg";
+import imgGaming from "../../assets/imgs/gaming.jpg";
+import imgBanner from "../../assets/imgs/banner.jpg";
 
 export default function Home() {
   const [list, setlist] = useState([]);
@@ -18,6 +23,7 @@ export default function Home() {
   const [totalPage, setTotalPage] = useState(0);
   const [page, setPage] = useState(1);
   const customerName = localStorage.getItem("customerName");
+  const [isSearch, setIsSearch] = useState(false);
 
   useEffect(() => {
     console.log("hàm này chạy đầu tiên");
@@ -25,6 +31,25 @@ export default function Home() {
     fetchAxios();
   }, []);
 
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: 1,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 1,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 1,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+    },
+  };
   const fetchAPI = () => {
     fetch("https://reqres.in/api/users/")
       .then((response) => response.json())
@@ -123,11 +148,27 @@ export default function Home() {
       });
   };
 
+
+  const imageBanner = [
+    imgMsibravo,
+    imgGaming,
+    imgMsi,
+    imgBanner,
+  ];
+
   return (
     <div className="homecontainer">
       <Narbar />
-      {/* && la chi thuc hien khi dieu kien tra ve dung, con sai thi thoi!!! */}
+      {!isSearch && (
+        <Carousel responsive={responsive} autoPlay={true} autoPlaySpeed={1000}>
+          {imageBanner?.map((item) => (
+            <img className="imgBanner" src={item} />
+          ))}
+        </Carousel>
+      )}
       {customerName && <MyCartIcon />}
+      {/* && la chi thuc hien khi dieu kien tra ve dung, con sai thi thoi!!! */}
+
       <div className="content">
         <div className="menu_top">
           <div className="d-flex">
@@ -198,7 +239,7 @@ export default function Home() {
             </div>
           )}
         </div>
-        <div className="pagination">
+        <div div className="pagination">
           <ReactPaginate
             previousLabel={"<"}
             nextLabel={">"}

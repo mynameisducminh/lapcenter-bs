@@ -20,6 +20,7 @@ export default function Card({ product }) {
       <div className="btn-view">
         <Button
           variant="primary"
+          className="view_products"
           onClick={() => {
             navigate(`/product/${product._id}`, {
               state: { id: product._id, brand: product.brand },

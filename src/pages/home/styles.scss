@@ -1,5 +1,15 @@
 .homecontainer {
     width: 100%;
+    margin-top: 65px;
+
+    .imgBanner {
+        width: 100%;
+        height: 350px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: inline-block;
+
+    }
 
     .content {
         justify-content: space-between;
@@ -13,11 +23,13 @@
         display: flex;
         justify-content: space-between;
         margin-top: 15px;
+        
 
         .btnsearch {
             width: 250px;
             margin-left: 15px;
             font-weight: 600;
+            background-color: black;
         }
 
         .selectForm {
@@ -39,7 +51,7 @@
         width: 80%;
         margin: 0 auto;
     }
-    
+
     .pagination {
         margin: 15px auto;
         display: flex;
@@ -48,13 +60,13 @@
     }
 
     .pagination>.active>a {
-        background-color: #47ccde;
-        border-color: #47ccde;
+        background-color: #01090a;
+        border-color: #010303;
         color: #fff;
     }
 
     .pagination>li>a {
-        border: 1px solid #47ccde;
+        border: 1px solid #040b0c;
         padding: 5px 10px;
         outline: none;
         cursor: pointer;
@@ -67,14 +79,14 @@
     .pagination>.active>span:hover,
     .pagination>.active>a:focus,
     .pagination>.active>span:focus {
-        background-color: #47ccde;
-        border-color: #47ccde;
+        background-color: black;
+        border-color: black;
         outline: none;
     }
 
     .pagination>li>a,
     .pagination>li>span {
-        color: #47ccde
+        color: black;
     }
 
     .pagination>li:first-child>a,
