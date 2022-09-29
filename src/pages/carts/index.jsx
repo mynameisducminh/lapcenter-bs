@@ -85,7 +85,7 @@ const MyCarts = () => {
               <p className="tbh-actions">Hành động</p>
             </div>
             {data?.map((item) => (
-              <div className="d-flex tb-body fw-bold justify-content-between border-top-0 text-center">
+              <div className="d-flex tb-body fw-bold justify-content-between border-top-0">
                 {/* <p className="tbh-img">Hình ảnh</p> */}
                 <img className="tbb-img" src={item.image} alt="" />
                 <p className="tbh-name mt-2">{item.productName}</p>

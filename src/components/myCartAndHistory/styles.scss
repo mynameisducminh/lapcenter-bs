@@ -1,36 +1,41 @@
 #root {
-    position: relative;
-  }
-  
-  .myCart {
-    position: fixed;
-    top: 300px;
-    right: 30px;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    padding-top: 14px;
-    padding-left: 14px;
-    background-color: cadetblue;
-  }
-  
-  .myCart:hover {
-    background-color: rgb(55, 105, 106);
-  }
-  .myHistory {
-    position: fixed;
-    top: 370px;
-    right: 30px;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    padding-top: 14px;
-    padding-left: 14px;
-    background-color: cadetblue;
-  }
-  
-  .myHistory:hover {
-    background-color: rgb(55, 105, 106);
-  }
-  
-  
+  position: relative;
+}
+
+.myCart {
+  position: fixed;
+  top: 300px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  padding-top: 14px;
+  padding-left: 14px;
+  background-color: rgb(192, 209, 210);
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.myCart:hover {
+  background-color: rgb(44, 224, 227);
+}
+
+.myHistory {
+  position: fixed;
+  top: 370px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  padding-top: 14px;
+  padding-left: 14px;
+  background-color: rgb(192, 209, 210);
+  z-index: 1000;
+  cursor: pointer;
+
+
+}
+
+.myHistory:hover {
+  background-color: rgb(44, 224, 227);
+}
