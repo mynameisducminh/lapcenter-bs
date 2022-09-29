@@ -167,7 +167,7 @@ export default function Home() {
         </Carousel>
       )}
       {customerName && <MyCartIcon />}
-      {/* && la chi thuc hien khi dieu kien tra ve dung, con sai thi thoi!!! */}
+      {/* && là chỉ trả khi diều kiểu trả về đúng, còn sai thì thôi!!! */}
 
       <div className="content">
         <div className="menu_top">

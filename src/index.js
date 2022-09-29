@@ -28,7 +28,7 @@ root.render(
         <Route path="/buy/:productId" element={<BuyNow />} />
         <Route path="/myCarts" element={<MyCarts />} />
         <Route path="/*" element={<PageNotFound />} />
-        {isAdmin === "false" && <Route path="/orders" element={<Orders />} />}
+        {isAdmin === "true" && <Route path="/orders" element={<Orders />} />}
       </Routes>
     </BrowserRouter>{" "}
   </React.StrictMode>
