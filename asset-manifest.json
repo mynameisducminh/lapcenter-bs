@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.css": "/lapcenter-bs/static/css/main.2d82f180.css",
+    "main.js": "/lapcenter-bs/static/js/main.a172c710.js",
+    "static/js/787.c2bcdee5.chunk.js": "/lapcenter-bs/static/js/787.c2bcdee5.chunk.js",
+    "static/media/fa-solid-900.ttf": "/lapcenter-bs/static/media/fa-solid-900.e615bbcb258550973c16.ttf",
+    "static/media/fa-brands-400.ttf": "/lapcenter-bs/static/media/fa-brands-400.b823fc0dbb5a5f0c21bb.ttf",
+    "static/media/fa-solid-900.woff2": "/lapcenter-bs/static/media/fa-solid-900.59edf72a325ac2048d60.woff2",
+    "static/media/iconHome.png": "/lapcenter-bs/static/media/iconHome.6fc7569e0fae794bd068.png",
+    "static/media/fa-brands-400.woff2": "/lapcenter-bs/static/media/fa-brands-400.ebb7a127d2d8ee6f1832.woff2",
+    "static/media/msibravo.jpg": "/lapcenter-bs/static/media/msibravo.01adffa096650351361e.jpg",
+    "static/media/gaming.jpg": "/lapcenter-bs/static/media/gaming.016f5a06d4637385989e.jpg",
+    "static/media/msi.jpg": "/lapcenter-bs/static/media/msi.276e657ef557fd60e605.jpg",
+    "static/media/fa-regular-400.ttf": "/lapcenter-bs/static/media/fa-regular-400.0d03b1bbd1d62c1e1284.ttf",
+    "static/media/banner.jpg": "/lapcenter-bs/static/media/banner.bec4d46a38aa4ec669d9.jpg",
+    "static/media/eye.png": "/lapcenter-bs/static/media/eye.91e8295f12811ca5ea9f.png",
+    "static/media/imgs.jpg": "/lapcenter-bs/static/media/imgs.7772d945cb5b2466f6fb.jpg",
+    "static/media/fa-regular-400.woff2": "/lapcenter-bs/static/media/fa-regular-400.0caf4c6cf244a90efcc5.woff2",
+    "static/media/carts.png": "/lapcenter-bs/static/media/carts.383a0ed3e89d6c3c6ee9.png",
+    "static/media/history.png": "/lapcenter-bs/static/media/history.fb547326b27974008e51.png",
+    "static/media/revicons.eot": "/lapcenter-bs/static/media/revicons.a77de540a38981833f9e.eot",
+    "static/media/revicons.ttf": "/lapcenter-bs/static/media/revicons.57fd05d4ae650374c8de.ttf",
+    "static/media/fa-v4compatibility.ttf": "/lapcenter-bs/static/media/fa-v4compatibility.4baccb548138840fa33a.ttf",
+    "static/media/revicons.woff": "/lapcenter-bs/static/media/revicons.e8746a624ed098489406.woff",
+    "static/media/fa-v4compatibility.woff2": "/lapcenter-bs/static/media/fa-v4compatibility.afac89562a5301459069.woff2",
+    "index.html": "/lapcenter-bs/index.html",
+    "main.2d82f180.css.map": "/lapcenter-bs/static/css/main.2d82f180.css.map",
+    "main.a172c710.js.map": "/lapcenter-bs/static/js/main.a172c710.js.map",
+    "787.c2bcdee5.chunk.js.map": "/lapcenter-bs/static/js/787.c2bcdee5.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2d82f180.css",
+    "static/js/main.a172c710.js"
+  ]
+}
