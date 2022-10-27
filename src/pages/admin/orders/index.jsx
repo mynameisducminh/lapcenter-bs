@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
+import ReactPaginate from "react-paginate";
 import { useNavigate, navigate } from "react-router-dom";
 import Narbar from "../../../components/nabar";
 import "./styles.scss";
-import { Spinner, Button } from "react-bootstrap";
-import iconCart from "../../../assets/imgs/carts.png";
+import { Spinner } from "react-bootstrap";
+// import iconCart from "../../../assets/imgs/carts.png";
 import iconDelete from "../../../assets/imgs/delete.png";
 import iconEye from "../../../assets/imgs/eye.png";
 import axios from "axios";
-import Modal from "react-bootstrap/Modal";
 
 const Orders = () => {
   const navigate = useNavigate();
@@ -17,49 +17,11 @@ const Orders = () => {
   const userId = localStorage.getItem("userId");
   const accessToken = localStorage.getItem("accessToken");
   const [product, setProduct] = useState();
-  const [modalShow, setModalShow] = useState(false);
-  const [dataItem, setDataItem] = useState();
-  const [selectedStatus, setSelectedStatus] = useState();
-  const [modalConfirm, setModalConfirm] = useState(false);
-  const [message, setMessage] = useState();
+  const [totalPage, setTotalPage] = useState(0);
+  const [page, setPage] = useState(1);
 
-  const handleChooseItem = (item) => {
-    setDataItem(item);
-    setModalShow(true);
-    setSelectedStatus(item.orderStatus);
-  };
-
-  const handleSelectChange = (event) => {
-    //parseInt => chuyển kiểu dữ liệu từ string sang number (integer)
-    setSelectedStatus(parseInt(event.target.value));
-    console.log(parseInt(event.target.value));
-  };
-
-  const handleUpdateOderStatus = () => {
-    setLoading(true);
-    axios
-      .patch(
-        `https:lap-center.herokuapp.com/api/order/editOrderStatus/${dataItem._id}`,
-        {
-          orderStatus: selectedStatus,
-        }
-      )
-      .then(function (response) {
-        setModalConfirm(true);
-        setLoading(false);
-        setMessage("Cập nhật trạng thái đơn hàng thành công!");
-        console.log(response);
-        setModalShow(false);
-        fetchAPI();
-      })
-      .catch(function (error) {
-        setModalConfirm(true);
-        setLoading(false);
-        setMessage("Cập nhật trạng thái đơn hàng không thành công!");
-        setModalShow(false);
-        console.log(error);
-      });
-  };
+  console.log("asdashda", userId);
+  console.log("12312", accessToken);
 
   const fetchAPI = () => {
     setLoading(true);
@@ -71,6 +33,7 @@ const Orders = () => {
         console.log("Orders : ", data);
         setData(data.reverse());
         setLoading(false);
+        setTotalPage(response.data.totalPage);
       })
       .catch(function (error) {
         // handle error
@@ -78,23 +41,22 @@ const Orders = () => {
       });
   };
 
-  const handDelete = (orderId) => {
-    console.log("ORDERID: ", orderId);
+  const handDelete = (cardId) => {
+    console.log("CART ID: ", cardId);
     setLoading(true);
     axios
       .delete(
-        `https://lap-center.herokuapp.com/api/order/removeOrder/${orderId}`
+        `https://lap-center-v1.herokuapp.com/api/cart/removeCartInCart/${cardId}`
       )
       .then(function (response) {
+        // handle success
         setLoading(false);
-        setModalConfirm(true);
-        setMessage("Đã xóa sản phẩm khỏi danh sách đơn hàng.");
         fetchAPI();
       })
       .catch(function (error) {
+        // handle error
         setLoading(false);
-        setModalConfirm(true);
-        setMessage("Lỗi. Không thể xóa sản phẩm khỏi danh sách đơn hàng.");
+        console.log("ERROR: ", error);
       });
   };
   const handleShowOrdersStatus = (orderStatus) => {
@@ -125,6 +87,28 @@ const Orders = () => {
       return "text-danger";
     }
   };
+  const handleChangePage = (pageNumber) => {
+    console.log("PAGE NUMBER: ", pageNumber);
+    setLoading(true);
+    setPage(pageNumber);
+
+    axios
+      .get(
+        `https://lap-center.herokuapp.com/api/order?pageSize=24&pageNumber=${pageNumber}`
+      )
+      .then(function (response) {
+        console.log("SUCCESS: ", response.data);
+        setLoading(false);
+        setData(response.data.orders);
+        setTotalPage(response.data.totalPage);
+      })
+      .catch(function (error) {
+        setLoading(false);
+        console.log("ERROR: ", error);
+      })
+      .then(function () {});
+  };
+
   useEffect(() => {
     fetchAPI();
   }, []);
@@ -144,7 +128,7 @@ const Orders = () => {
         ) : (
           <div>
             <div className="d-flex tb-header rounded-top fw-bold text-light justify-content-between">
-              <p className="tbh-name mx-2">Tên khách hàng</p>
+              <p className="tbh-name">Tên khách hàng</p>
               <p className="tbh-brand">Tên sản phẩm</p>
               <p className="tbh-price">Số lượng</p>
               <p className="tbh-price">Trạng thái</p>
@@ -152,21 +136,21 @@ const Orders = () => {
             </div>
             {data?.map((item) => (
               <div className="d-flex tb-body fw-bold justify-content-between border-top-0">
-                <p className="tbh-name mt-2 mx-2">{item?.customerName}</p>
-                <p className="tbh-brand mt-2">{item?.productName}</p>
-                <p className="tbh-price mt-2">{item?.quantity}</p>
+                <p className="tbh-name mt-2">{item.customerName}</p>
+                <p className="tbh-brand mt-2">{item.productName}</p>
+                <p className="tbh-price mt-2">{item.quantity}</p>
                 <p
                   className={`tbh-price mt-2 ${handleShowColorOrderStatus(
-                    item?.orderStatus
+                    item.orderStatus
                   )}`}
                 >
-                  {handleShowOrdersStatus(item?.orderStatus)}
+                  {handleShowOrdersStatus(item.orderStatus)}
                 </p>
 
                 <div className="tbh-actions mt-2 d-flex">
                   <div
                     className="bg-icon mx-2"
-                    onClick={() => handDelete(item?._id)}
+                    onClick={() => handDelete(item._id)}
                   >
                     <img
                       className="icon"
@@ -178,7 +162,11 @@ const Orders = () => {
                   </div>
                   <div
                     className="bg-icon"
-                    onClick={() => handleChooseItem(item)}
+                    onClick={() => {
+                      navigate(`/buy/${item._id}`, {
+                        state: { id: item._id },
+                      });
+                    }}
                   >
                     <img
                       className="icon"
@@ -200,93 +188,21 @@ const Orders = () => {
           </div>
         )}
       </div>
-      <Modal
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-        backdrop="static"
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <Modal.Header closeButton>
-          <Modal.Title
-            id="contained-modal-title-vcenter"
-            className="text-danger"
-          >
-            Xác nhận thông tin
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <div>
-            <div className="d-flex">
-              <p>Tên khách hàng:</p>
-              <span className="mx-2 fw-bold">{dataItem?.customerName}</span>
-            </div>
-            <div className="d-flex">
-              <p>Tên sản phẩm:</p>
-              <span className="mx-2 fw-bold">{dataItem?.productName}</span>
-            </div>
-            <div className="d-flex">
-              <p>Hãng:</p>
-              <span className="mx-2 fw-bold">{dataItem?.productBrand}</span>
-            </div>
-            <div className="d-flex">
-              <p>Số lượng:</p>
-              <span className="mx-2 fw-bold"> {dataItem?.quantity}</span>
-            </div>
-            <div className="d-flex">
-              <p>Số điện thoại:</p>
-              <span className="mx-2 fw-bold">{dataItem?.phone}</span>
-            </div>
-            <div className="d-flex">
-              <p>Địa chỉ:</p>
-              <span className="mx-2 fw-bold">{dataItem?.address}</span>
-            </div>
-            <div className="d-flex">
-              <p>Trạng thái đơn hàng:</p>
-              <select
-                value={selectedStatus}
-                onChange={handleSelectChange}
-                className="select-status mx-2"
-              >
-                <option value="1">Vừa đặt hàng</option>
-                <option value="2">Đang giao hàng</option>
-                <option value="3">Đã nhận hàng</option>
-                <option value="4">Gửi trả hàng</option>
-              </select>
-            </div>
-          </div>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button className="btn-succes" onClick={handleUpdateOderStatus}>
-            {/* <Button className="btn-succes" onClick={handleSelectChange}> */}
-            Cập nhật
-          </Button>
-          <Button className="btn-light" onclick={() => null}>
-            Hủy
-          </Button>
-        </Modal.Footer>
-      </Modal>
-      <Modal
-        show={modalConfirm}
-        onHide={() => setModalConfirm(false)}
-        backdrop="static"
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            Thông báo đơn hàng
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <p>{message}</p>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={() => setModalConfirm(false)}>Close</Button>
-        </Modal.Footer>
-      </Modal>
+      <div div className="pagination">
+        <ReactPaginate
+          previousLabel={"<"}
+          nextLabel={">"}lable
+          breakLabel={"..."}
+          breakClassName={"break-me"}
+          pageCount={totalPage}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={4}
+          onPageChange={(e) => handleChangePage(e.selected + 1)}
+          containerClassName={"pagination"}
+          subContainerClassName={"pages pagination"}
+          activeClassName={"active"}
+        />
+      </div>
     </>
   );
 };
