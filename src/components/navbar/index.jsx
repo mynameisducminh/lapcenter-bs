@@ -2,7 +2,7 @@ import React from "react";
 import "./styles.scss";
 import { Link, useNavigate } from "react-router-dom";
 
-export default function Narbar() {
+export default function Navbar() {
   const accessToken = localStorage.getItem("accessToken");
   const navigate = useNavigate()
 

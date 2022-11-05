@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReactPaginate from "react-paginate";
 import { useNavigate, navigate } from "react-router-dom";
-import Narbar from "../../../components/nabar";
+import Navbar from "../../../components/navbar";
 import "./styles.scss";
 import { Spinner } from "react-bootstrap";
 // import iconCart from "../../../assets/imgs/carts.png";
@@ -115,7 +115,7 @@ const Orders = () => {
 
   return (
     <>
-      <Narbar />
+      <Navbar />
       <div className="ordersContainer">
         <h3 className="text-center my-4">Quản lý đơn hàng</h3>
         {/* CUSTOMIZE TABLE HEADER */}

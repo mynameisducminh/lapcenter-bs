@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form, Col, Row, Button } from "react-bootstrap";
-import Narbar from "../../components/nabar";
+import Navbar from "../../components/navbar";
 import "./register.scss";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -47,7 +47,7 @@ export default function Register() {
   };
   return (
     <div className="register-container">
-      {/* <Narbar /> */}
+      {/* <Navbar /> */}
       <img src={iconHome} alt="" width={45} height={45} className='iconHome' title='Trang chủ' onClick={() => navigate('/')}/>
       <div className="form-register">
         <h2>Đăng Ký</h2>

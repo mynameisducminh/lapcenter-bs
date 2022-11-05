@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Card from "../../components/card";
-import Narbar from "../../components/nabar";
+import Navbar from "../../components/navbar";
 import { data } from "../../data";
 import { Form, Button, Spinner } from "react-bootstrap";
 import "./styles.scss";
@@ -158,7 +158,7 @@ export default function Home() {
 
   return (
     <div className="homecontainer">
-      <Narbar />
+      <Navbar />
       {!isSearch && (
         <Carousel responsive={responsive} autoPlay={true} autoPlaySpeed={1000}>
           {imageBanner?.map((item) => (
