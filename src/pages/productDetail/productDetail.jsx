@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Narbar from "../../components/nabar";
+import Navbar from "../../components/navbar";
 import "./productDetail.scss";
 import { Button, Spinner, Modal } from "react-bootstrap";
 import Footer from "../../components/footer";
@@ -119,7 +119,7 @@ export default function ProductDetail() {
 
   return (
     <>
-      <Narbar />
+      <Navbar />
       {!loading ? (
         <div>
           <div className="productDetailcontainer">

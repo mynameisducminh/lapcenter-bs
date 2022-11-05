@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
-import Narbar from "../../components/nabar";
+import Navbar from "../../components/navbar";
 import { Form, Col, Row, Button, Spinner } from "react-bootstrap";
 import axios from "axios";
 import Footer from "../../components/footer";
@@ -124,7 +124,7 @@ const BuyNow = () => {
 
   return (
     <div className="buyContainer">
-      <Narbar />
+      <Navbar />
       {!loading ? (
         <div className="content">
           <b className="text-danger mt-2">Để đặt hàng</b>

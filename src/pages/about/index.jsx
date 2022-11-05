@@ -1,10 +1,10 @@
 import React from "react";
-import Narbar from "../../components/nabar";
+import Navbar from "../../components/navbar";
 
 export default function About() {
   return (
     <div className="aboutContainer">
-      <Narbar />
+      <Navbar />
       <div>About</div>
     </div>
   );

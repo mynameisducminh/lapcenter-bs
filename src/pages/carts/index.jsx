@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, navigate } from "react-router-dom";
-import Narbar from "../../components/nabar";
+import Navbar from "../../components/navbar";
 import "./styles.scss";
 import { Spinner } from "react-bootstrap";
 import iconCart from "../../assets/imgs/carts.png";
@@ -62,7 +62,7 @@ const MyCarts = () => {
 
   return (
     <>
-      <Narbar />
+      <Navbar />
       <div className="myCartsContainer">
         <h3 className="text-center my-4">
           {" "}

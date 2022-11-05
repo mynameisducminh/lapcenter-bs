@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form, Col, Row, Button } from "react-bootstrap";
-import Narbar from "../../components/nabar";
+import Navbar from "../../components/navbar";
 import "./styles.scss";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
